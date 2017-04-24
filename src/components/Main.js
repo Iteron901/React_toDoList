@@ -9,6 +9,13 @@ var TodoApp = React.createClass({
   getInitialState: function(){
 		return {items: []};
 	},
+  deleteItem : function(index){
+            var newData = this.state.items.slice(); //copy array
+            newData.splice(index, 1); //remove element
+            this.setState({
+                items: newData
+            });
+        },
 	updateItems: function(newItem){
 		var allItems = this.state.items.concat([newItem]);
 		this.setState({items: allItems});
@@ -18,7 +25,7 @@ var TodoApp = React.createClass({
 			<div>
 				<TodoHeader/>
         <TodoForm onFormSubmit={this.updateItems}/>
-        <TodoList items={this.state.items}/>
+        <TodoList items={this.state.items} onDelete={this.deleteItem}/>
 			</div>
 		);
 	}
@@ -59,13 +66,16 @@ var TodoForm = React.createClass({
 });
 
 var TodoList = React.createClass({
+  Remove: function(e){
+       this.props.onDelete(e);
+    },
 	render: function() {
-		var createItem = function(itemText) {
+		var createItem = function(itemText,i) {
 			return (
-				<TodoListItem><p className="col-xs-10">{itemText}</p></TodoListItem>
+				<TodoListItem key={i} value={i} onRemove = {this.Remove}><p className="col-xs-10">{itemText}</p></TodoListItem>
 			);
 		};
-		return <ul className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">{this.props.items.map(createItem)}</ul>;
+		return <ul className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">{this.props.items.map(createItem, this)}</ul>;
 	}
 });
 
@@ -83,6 +93,9 @@ var TodoListItem = React.createClass({
   done: function() {
     this.setState({isDone: true})
   },
+  RemoveHandler: function(){
+                   this.props.onRemove(this.props.value);
+            },
 	render: function(){
     var liStyle = {
                 background: 'silver',
@@ -93,13 +106,13 @@ var TodoListItem = React.createClass({
                 liStyle['color'] = 'white';
             }
 		return (
-			<li style={liStyle}>
+			<li data-id={this.props.value} key={this.props.value} style={liStyle}>
         {this.props.children}
 
         <div className = "options col-xs-2 col-sm-2">
           <span className="glyphicon glyphicon-ok ok" onClick={this.done}></span>
           <span className="glyphicon glyphicon-pencil edit"></span>
-          <span className="glyphicon glyphicon-remove remove"></span>
+          <span className="glyphicon glyphicon-remove remove" onClick={this.RemoveHandler}></span>
         </div>
       </li>
 		);

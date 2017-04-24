@@ -66,13 +66,13 @@ var TodoForm = React.createClass({
 });
 
 var TodoList = React.createClass({
-  Remove: function(e){
+  remove: function(e){
        this.props.onDelete(e);
     },
 	render: function() {
 		var createItem = function(itemText,i) {
 			return (
-				<TodoListItem key={i} value={i} onRemove = {this.Remove}><p className="col-xs-10">{itemText}</p></TodoListItem>
+				<TodoListItem key={i} value={i} onRemove = {this.remove}><p className="col-xs-10">{itemText}</p></TodoListItem>
 			);
 		};
 		return <ul className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">{this.props.items.map(createItem, this)}</ul>;
@@ -90,8 +90,14 @@ var TodoListItem = React.createClass({
   getInitialState: function() {
                 return  {isDone: false}
             },
+
   done: function() {
-    this.setState({isDone: true})
+    if (this.state.isDone == false) {
+        this.setState({isDone: true})
+    }
+    else {
+        this.setState({isDone: false})
+    }
   },
   RemoveHandler: function(){
                    this.props.onRemove(this.props.value);
@@ -104,6 +110,10 @@ var TodoListItem = React.createClass({
             if (this.state.isDone) {
                 liStyle['background'] = 'green';
                 liStyle['color'] = 'white';
+            }
+            else {
+                liStyle['background'] = 'silver';
+                liStyle['color'] = 'black';
             }
 		return (
 			<li data-id={this.props.value} key={this.props.value} style={liStyle}>

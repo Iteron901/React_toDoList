@@ -103,6 +103,7 @@ var TodoListItem = React.createClass({
                    this.props.onRemove(this.props.value);
             },
 	render: function(){
+    var itemClass = ["glyphicon glyphicon-ok ok","glyphicon glyphicon-remove remove"];
     var liStyle = {
                 background: 'silver',
                 color: 'black'
@@ -110,19 +111,20 @@ var TodoListItem = React.createClass({
             if (this.state.isDone) {
                 liStyle['background'] = 'green';
                 liStyle['color'] = 'white';
+                itemClass[0] = "glyphicon glyphicon-repeat ok";
+                itemClass[1] = "";
             }
             else {
                 liStyle['background'] = 'silver';
                 liStyle['color'] = 'black';
             }
+
 		return (
 			<li data-id={this.props.value} key={this.props.value} style={liStyle}>
         {this.props.children}
-
         <div className = "options col-xs-2 col-sm-2">
-          <span className="glyphicon glyphicon-ok ok" onClick={this.done}></span>
-          <span className="glyphicon glyphicon-pencil edit"></span>
-          <span className="glyphicon glyphicon-remove remove" onClick={this.RemoveHandler}></span>
+          <span className={itemClass[0]} onClick={this.done}></span>
+          <span className={itemClass[1]} onClick={this.RemoveHandler}></span>
         </div>
       </li>
 		);

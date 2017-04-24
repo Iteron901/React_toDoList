@@ -1,7 +1,11 @@
 /* Base Application Styles */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
 body {
   color: #fff;
   background: #222;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 .index img {
@@ -18,4 +22,9 @@ body {
   border: 1px solid #000;
   border-width: 1px 0;
   background: #666;
+}
+
+h1 {
+  text-align: center;
+  font-size: 50px;
 }

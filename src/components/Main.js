@@ -3,14 +3,15 @@ require('styles/App.css');
 
 import React from 'react';
 
-let yeomanImage = require('../images/favicon.png');
+let favImage = require('../images/favicon.png');
 
 class AppComponent extends React.Component {
   render() {
     return (
       <div className="index">
-        <img src={yeomanImage} alt="Yeoman Generator" />
-        <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+        <h1>To Do List</h1>
+        {/*<img src={favImage} alt="Icon" />*/}
+        {/*<div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>*/}
       </div>
     );
   }

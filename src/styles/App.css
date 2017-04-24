@@ -43,3 +43,24 @@ button {
   border: 0;
   height: 50px;
 }
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  height: 75px;
+  background-color: silver;
+  border-bottom: solid 1px black;
+}
+
+.options {
+  float: right;
+  display: table-cell;
+}
+
+.glyphicon:hover {
+  cursor: pointer;
+  color: gray;
+  transition: all 300ms;
+}

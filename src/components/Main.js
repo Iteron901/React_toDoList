@@ -51,7 +51,7 @@ var TodoForm = React.createClass({
 	render: function(){
 		return (
 		  <form className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6" onSubmit={this.handleSubmit}>
-				<input type='text' className="col-xs-10 col-sm-10" />
+				<input type='text' ref='item' onChange={this.onChange} value={this.state.item} className="col-xs-10 col-sm-10" />
 				<button type='submit' className="col-xs-2 col-sm-2"><span className="glyphicon glyphicon-plus"></span></button>
 			</form>
 		);
@@ -62,7 +62,7 @@ var TodoList = React.createClass({
 	render: function() {
 		var createItem = function(itemText) {
 			return (
-				<TodoListItem>{itemText}</TodoListItem>
+				<TodoListItem><p className="col-xs-10">{itemText}</p></TodoListItem>
 			);
 		};
 		return <ul className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">{this.props.items.map(createItem)}</ul>;
@@ -70,14 +70,36 @@ var TodoList = React.createClass({
 });
 
 var TodoListItem = React.createClass({
+  /*constructor(props) {
+  super(props);
+  this.state = {
+    //done: props.initialColor
+    done: false;
+  };
+},*/
+  getInitialState: function() {
+                return  {isDone: false}
+            },
+  done: function() {
+    this.setState({isDone: true})
+  },
 	render: function(){
+    var liStyle = {
+                background: 'silver',
+                color: 'black'
+            };
+            if (this.state.isDone) {
+                liStyle['background'] = 'green';
+                liStyle['color'] = 'white';
+            }
 		return (
-			<li>
+			<li style={liStyle}>
         {this.props.children}
-        <div className = "options">
-          <span className="glyphicon glyphicon-ok"></span>
-          <span className="glyphicon glyphicon-pencil"></span>
-          <span className="glyphicon glyphicon-remove"></span>
+
+        <div className = "options col-xs-2 col-sm-2">
+          <span className="glyphicon glyphicon-ok ok" onClick={this.done}></span>
+          <span className="glyphicon glyphicon-pencil edit"></span>
+          <span className="glyphicon glyphicon-remove remove"></span>
         </div>
       </li>
 		);

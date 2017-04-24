@@ -6,6 +6,7 @@ body {
   color: #fff;
   background: #222;
   font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 20px;
 }
 
 .index img {
@@ -52,11 +53,26 @@ ul li {
   height: 75px;
   background-color: silver;
   border-bottom: solid 1px black;
+  color: black;
+}
+
+ul li p {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .options {
   float: right;
+  display: table;
+  height: 100%;
+}
+
+.options span {
+  /*padding: 8px;*/
+  /*padding-top: 27px;*/
   display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .glyphicon:hover {

@@ -72,7 +72,7 @@ var TodoList = React.createClass({
 	render: function() {
 		var createItem = function(itemText,i) {
 			return (
-				<TodoListItem key={i} value={i} onRemove = {this.remove}><p className="col-xs-10">{itemText}</p></TodoListItem>
+				<TodoListItem key={i} value={i} onRemove = {this.remove}><div className="col-xs-10"><p>{itemText}</p></div></TodoListItem>
 			);
 		};
 		return <ul className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">{this.props.items.map(createItem, this)}</ul>;
@@ -105,7 +105,7 @@ var TodoListItem = React.createClass({
 	render: function(){
     var itemClass = ["glyphicon glyphicon-ok ok","glyphicon glyphicon-remove remove"];
     var liStyle = {
-                background: 'silver',
+                background: 'white',
                 color: 'black'
             };
             if (this.state.isDone) {
@@ -115,7 +115,7 @@ var TodoListItem = React.createClass({
                 itemClass[1] = "";
             }
             else {
-                liStyle['background'] = 'silver';
+                liStyle['background'] = 'white';
                 liStyle['color'] = 'black';
             }
 

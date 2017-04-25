@@ -4,7 +4,7 @@
 
 body {
   color: #fff;
-  background: #222;
+  background: #6898C5;
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: 20px;
 }
@@ -36,6 +36,8 @@ input[type="text"] {
   border: 0;
   height: 50px;
   font-size: 25px;
+  background-color: white;
+  margin-bottom: 25px;
 }
 
 button {
@@ -43,6 +45,12 @@ button {
   border-radius: 0;
   border: 0;
   height: 50px;
+  trasition: all 300ms;
+}
+
+button:hover {
+  background-color: darkgreen;
+  transition: all 300ms;
 }
 
 ul {
@@ -51,12 +59,18 @@ ul {
 
 ul li {
   height: 75px;
-  background-color: silver;
+  background-color: white;
   border-bottom: solid 1px black;
   color: black;
 }
 
-ul li p {
+ul li div {
+  display: table;
+  vertical-align: middle;
+  height: 100%;
+}
+
+p {
   display: table-cell;
   vertical-align: middle;
 }
@@ -73,6 +87,7 @@ ul li p {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
+  transition: all 300ms;
 }
 
 .glyphicon:hover {

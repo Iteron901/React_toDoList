@@ -70,12 +70,18 @@ var TodoList = React.createClass({
        this.props.onDelete(e);
     },
 	render: function() {
-		var createItem = function(itemText,i) {
+		var createItem = function(itemText,i,e) {
+      if (itemText.length > 0) {
 			return (
 				<TodoListItem key={i} value={i} onRemove = {this.remove}><div className="col-xs-10"><p>{itemText}</p></div></TodoListItem>
-			);
+			);}
+      else if(itemText.length == 0) {
+        return null;
+      }
 		};
+
 		return <ul className="col-xs-offset-1 col-xs-10 col-md-offset-3 col-md-6">{this.props.items.map(createItem, this)}</ul>;
+
 	}
 });
 
